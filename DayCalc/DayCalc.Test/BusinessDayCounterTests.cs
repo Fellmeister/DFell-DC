@@ -6,11 +6,12 @@ namespace DayCalc.Test
 {
     public class BusinessDayCounterTests
     {
-        public static object[][] TestData = new object[][] { 
+        public static object[][] TestData = new object[][] {
+            new object[] { new DateTime(2013, 10, 7), new DateTime(2013, 10, 5), 0},
             new object[] { new DateTime(2013, 10, 7), new DateTime(2013, 10, 9), 1},
             new object[] { new DateTime(2013, 10, 5), new DateTime(2013, 10, 14), 5},
-            new object[] { new DateTime(2013, 10, 7), new DateTime(2014, 1, 1), 61},
-            new object[] { new DateTime(2013, 10, 7), new DateTime(2013, 10, 5), 0}
+            new object[] { new DateTime(2013, 10, 7), new DateTime(2014, 1, 1), 61}
+            
         };
 
 
@@ -32,7 +33,10 @@ namespace DayCalc.Test
             {
                 return 0;
             }
-            return -1;
+
+            TimeSpan tmpTimeSpan = (secondDate - firstDate);
+
+            return tmpTimeSpan.Days;
         }
     }
 }
