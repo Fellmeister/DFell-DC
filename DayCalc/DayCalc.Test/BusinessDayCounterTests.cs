@@ -58,7 +58,7 @@ namespace DayCalc.Test
     {
         public static int WeekdaysBetweenTwoDates(DateTime firstDate, DateTime secondDate)
         {
-            if (IsValidDateRange(firstDate, secondDate))
+            if (!IsValidDateRange(firstDate, secondDate))
             {
                 return 0;
             }
@@ -70,13 +70,13 @@ namespace DayCalc.Test
 
         private static bool IsValidDateRange(DateTime firstDate, DateTime secondDate)
         {
-            return firstDate >= secondDate;
+            return firstDate <= secondDate;
         }
 
         public static int BusinessDaysBetweenTwoDates(DateTime firstDate, DateTime secondDate,
             IList<DateTime> publicHolidays)
         {
-            if (IsValidDateRange(firstDate, secondDate))
+            if (!IsValidDateRange(firstDate, secondDate))
             {
                 return 0;
             }
@@ -111,7 +111,7 @@ namespace DayCalc.Test
             return dateList;
         }
 
-        private static List<DateTime> RemoveWeekendDays(IEnumerable<DateTime> dateList)
+        private static List<DateTime> RemoveWeekendDays(List<DateTime> dateList)
         {
             return dateList.Where(d => d.DayOfWeek != DayOfWeek.Saturday && d.DayOfWeek != DayOfWeek.Sunday).ToList();
         }
